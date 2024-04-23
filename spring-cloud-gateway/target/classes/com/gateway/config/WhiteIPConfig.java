@@ -14,4 +14,6 @@ import java.util.Map;
 @Setter
 public class WhiteIPConfig {
     private Map<String, List<String>> innerMap = new HashMap<>();
+
+
 }

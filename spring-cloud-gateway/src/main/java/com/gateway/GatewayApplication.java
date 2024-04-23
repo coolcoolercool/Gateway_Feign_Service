@@ -8,7 +8,7 @@ import reactivefeign.spring.config.EnableReactiveFeignClients;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableReactiveFeignClients(clients = UserReactiveClient.class)
+//@EnableReactiveFeignClients(clients = UserReactiveClient.class)
 @EnableFeignClients(clients = UserClient.class) //调式同步调用的时候可以将注释打开
 public class GatewayApplication {
     public static void main(String[] args) {

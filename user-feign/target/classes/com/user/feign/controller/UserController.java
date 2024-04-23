@@ -6,7 +6,6 @@ import com.user.feign.util.ResponseUtil;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
- 
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 public class UserController {
 
     @GetMapping("/feign/api/v1/users/checkPermission")
-    public  ResultResponse  checkPermission(@RequestParam String url, @RequestParam String httpMethod) {
+    public ResultResponse checkPermission(@RequestParam String url, @RequestParam String httpMethod) {
         // 权限校验逻辑放在这里
         // checkPermission(url, httpMethod)
         // 检验通过，获取用户信息
@@ -24,7 +23,7 @@ public class UserController {
                 .username("test")
                 .userRole("admin")
                 .build();
-        return (ResponseUtil.build(userDTO));
+        return ResponseUtil.build(userDTO);
     }
 
     @GetMapping("/feign/api/v1/users/getUserInfo")
@@ -36,7 +35,7 @@ public class UserController {
                 .username("test")
                 .userRole("admin")
                 .build();
-        return (ResponseUtil.build(userDTO));
+        return ResponseUtil.build(userDTO);
     }
 
 
@@ -49,7 +48,7 @@ public class UserController {
                 .username("test")
                 .userRole("admin")
                 .build();
-        return (ResponseUtil.build(userDTO));
+        return ResponseUtil.build(userDTO);
     }
 
 }

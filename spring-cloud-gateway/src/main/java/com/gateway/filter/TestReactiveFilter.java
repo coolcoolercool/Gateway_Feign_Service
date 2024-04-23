@@ -3,7 +3,7 @@ package com.gateway.filter;
 import com.alibaba.fastjson.JSON;
 import com.gateway.UserClient;
 import com.gateway.config.WhiteIPConfig;
-import com.gateway.UserReactiveClient;
+import com.gateway.response.ResultResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,40 +23,40 @@ import java.nio.charset.StandardCharsets;
 
 @Component
 @Slf4j
-public class TestReactiveFilter implements GlobalFilter, Ordered , InitializingBean {
+public class TestReactiveFilter implements GlobalFilter, Ordered, InitializingBean {
 
     @Autowired
     private WhiteIPConfig whiteIPConfig;
 
-    @Autowired
-    private UserReactiveClient userReactiveClient;
-
+    //    @Autowired
+//    private UserReactiveClient userReactiveClient;
     @Autowired
     private UserClient userClient;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        log.info("@@@@@@@@TestReactiveFilter filter:{}", userReactiveClient.getFeignUserInfo());
-        log.info("#########TestReactiveFilter filter:{}", userClient.getFeignUserInfo());
-//        return chain.filter(exchange);
-        if (whiteIPConfig.getInnerMap().isEmpty()) {
-            return userReactiveClient.getFeignUserInfo().flatMap(commonResponse -> {
-                if (!commonResponse.isSuccess()) {
-                    return Mono.defer(() -> {
-                        exchange.getResponse().setStatusCode(HttpStatus.FORBIDDEN);
-                        final ServerHttpResponse response = exchange.getResponse();
-                        byte[] bytes = JSON.toJSONString(commonResponse).getBytes(StandardCharsets.UTF_8);
-                        DataBuffer buffer = exchange.getResponse().bufferFactory().wrap(bytes);
-                        return response.writeWith(Flux.just(buffer));
-                    });
-                } else {
-                    log.info("@@@@@@@@@@User-Info: [{}]", JSON.toJSONString(commonResponse.getData()));
-                    return chain.filter(exchange);
-                }
-            });
-        } else {
-            return chain.filter(exchange);
-        }
+        ResultResponse feignUserInfo = userClient.getFeignUserInfo();
+        log.info("@@@@@@@@@@{}", feignUserInfo);
+//        log.info("TestReactiveFilter filter:{}", userReactiveClient.getFeignUserInfo());
+        return chain.filter(exchange);
+//        if (whiteIPConfig.getInnerMap().isEmpty()) {
+//            return userReactiveClient.getFeignUserInfo().flatMap(commonResponse -> {
+//                if (!commonResponse.isSuccess()) {
+//                    return Mono.defer(() -> {
+//                        exchange.getResponse().setStatusCode(HttpStatus.FORBIDDEN);
+//                        final ServerHttpResponse response = exchange.getResponse();
+//                        byte[] bytes = JSON.toJSONString(commonResponse).getBytes(StandardCharsets.UTF_8);
+//                        DataBuffer buffer = exchange.getResponse().bufferFactory().wrap(bytes);
+//                        return response.writeWith(Flux.just(buffer));
+//                    });
+//                } else {
+//                    log.info("User-Info: [{}]", JSON.toJSONString(commonResponse.getData()));
+//                    return chain.filter(exchange);
+//                }
+//            });
+//        } else {
+//            return chain.filter(exchange);
+//        }
     }
 
     @Override
