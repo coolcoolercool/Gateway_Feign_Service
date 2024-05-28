@@ -1,7 +1,7 @@
 package com.gateway;
 
 
-import com.gateway.response.ResultResponse;
+/*import com.gateway.response.ResultResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import reactivefeign.spring.config.ReactiveFeignClient;
@@ -17,4 +17,4 @@ public interface UserReactiveClient {
 
     @GetMapping(value = "/feign/api/v1/users/getUserInfo")
     Mono<ResultResponse> getFeignUserInfo();
-}
+}*/

@@ -20,6 +20,8 @@ spring:
           uri: lb://user-feign
           predicates:
             - Path=/api/v1/users/**
-#          filters:
+  main:
+    allow-circular-references: true
 #            - ApiAuth=true
 #            - XssFilter
+

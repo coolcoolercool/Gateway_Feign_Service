@@ -3,7 +3,6 @@ package com.gateway.filter;
 import com.alibaba.fastjson.JSON;
 import com.gateway.UserClient;
 import com.gateway.config.WhiteIPConfig;
-import com.gateway.UserReactiveClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,18 +27,18 @@ public class TestReactiveFilter implements GlobalFilter, Ordered , InitializingB
     @Autowired
     private WhiteIPConfig whiteIPConfig;
 
-    @Autowired
-    private UserReactiveClient userReactiveClient;
+/*    @Autowired
+    private UserReactiveClient userReactiveClient;*/
 
-    @Autowired
-    private UserClient userClient;
+/*    @Autowired
+    private UserClient userClient;*/
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        log.info("@@@@@@@@TestReactiveFilter filter userReactiveClient:{}", userReactiveClient.getFeignUserInfo());
-        log.info("#########TestReactiveFilter filter userClient:{}", userClient.getFeignUserInfo());
+        //log.info("@@@@@@@@TestReactiveFilter filter userReactiveClient:{}", userReactiveClient.getFeignUserInfo());
+        //log.info("#########TestReactiveFilter filter userClient:{}", userClient.getFeignUserInfo());
 //        return chain.filter(exchange);
-        if (whiteIPConfig.getInnerMap().isEmpty()) {
+/*        if (whiteIPConfig.getInnerMap().isEmpty()) {
             return userReactiveClient.getFeignUserInfo().flatMap(commonResponse -> {
                 if (!commonResponse.isSuccess()) {
                     return Mono.defer(() -> {
@@ -56,7 +55,8 @@ public class TestReactiveFilter implements GlobalFilter, Ordered , InitializingB
             });
         } else {
             return chain.filter(exchange);
-        }
+        }*/
+        return chain.filter(exchange);
     }
 
     @Override
