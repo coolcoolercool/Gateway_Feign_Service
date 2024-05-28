@@ -20,7 +20,7 @@ public class CustomBlockingLoadBalancerClient extends BlockingLoadBalancerClient
     private final ReactiveLoadBalancer.Factory<ServiceInstance> loadBalancerClientFactory;
 
     public CustomBlockingLoadBalancerClient(LoadBalancerClientFactory loadBalancerClientFactory, LoadBalancerProperties properties) {
-        super(loadBalancerClientFactory, properties);
+        super(loadBalancerClientFactory);
         this.loadBalancerClientFactory = loadBalancerClientFactory;
     }
 

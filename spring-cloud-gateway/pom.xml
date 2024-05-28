@@ -10,7 +10,7 @@
         <version>${revision}</version>
     </parent>
     <properties>
-        <feign-reactor.version>3.0.3</feign-reactor.version>
+        <feign-reactor.version>4.0.3</feign-reactor.version>
     </properties>
     <artifactId>spring-cloud-gateway</artifactId>
 
@@ -29,6 +29,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
+<!--            <version>4.1.2</version>-->
         </dependency>
 
         <dependency>
@@ -119,19 +120,13 @@
 
         <dependency>
             <groupId>com.playtika.reactivefeign</groupId>
-            <artifactId>feign-reactor-cloud</artifactId>
-            <version>${feign-reactor.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.playtika.reactivefeign</groupId>
             <artifactId>feign-reactor-spring-configuration</artifactId>
             <version>${feign-reactor.version}</version>
         </dependency>
-
         <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <groupId>com.playtika.reactivefeign</groupId>
+            <artifactId>feign-reactor-cloud</artifactId>
+            <version>${feign-reactor.version}</version>
         </dependency>
         <dependency>
             <groupId>com.playtika.reactivefeign</groupId>
@@ -145,5 +140,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
 </project>
