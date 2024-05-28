@@ -36,8 +36,8 @@ public class TestReactiveFilter implements GlobalFilter, Ordered , InitializingB
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        log.info("@@@@@@@@TestReactiveFilter filter:{}", userReactiveClient.getFeignUserInfo());
-        log.info("#########TestReactiveFilter filter:{}", userClient.getFeignUserInfo());
+        log.info("@@@@@@@@TestReactiveFilter filter userReactiveClient:{}", userReactiveClient.getFeignUserInfo());
+        log.info("#########TestReactiveFilter filter userClient:{}", userClient.getFeignUserInfo());
 //        return chain.filter(exchange);
         if (whiteIPConfig.getInnerMap().isEmpty()) {
             return userReactiveClient.getFeignUserInfo().flatMap(commonResponse -> {
