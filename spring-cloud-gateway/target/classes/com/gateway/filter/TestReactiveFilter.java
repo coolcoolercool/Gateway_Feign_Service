@@ -1,14 +1,15 @@
 package com.gateway.filter;
 
 import com.alibaba.fastjson.JSON;
-import com.gateway.UserClient;
+//import com.gateway.feign.UserClient;
 import com.gateway.config.WhiteIPConfig;
-import com.gateway.UserReactiveClient;
+import com.gateway.feign.UserReactiveClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;
@@ -26,18 +27,17 @@ import java.nio.charset.StandardCharsets;
 public class TestReactiveFilter implements GlobalFilter, Ordered , InitializingBean {
 
     @Autowired
+    @Lazy
     private WhiteIPConfig whiteIPConfig;
 
     @Autowired
+    @Lazy
     private UserReactiveClient userReactiveClient;
-
-    @Autowired
-    private UserClient userClient;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         log.info("@@@@@@@@TestReactiveFilter filter:{}", userReactiveClient.getFeignUserInfo());
-        log.info("#########TestReactiveFilter filter:{}", userClient.getFeignUserInfo());
+        //log.info("#########TestReactiveFilter filter:{}", userClient.getFeignUserInfo());
 //        return chain.filter(exchange);
         if (whiteIPConfig.getInnerMap().isEmpty()) {
             return userReactiveClient.getFeignUserInfo().flatMap(commonResponse -> {

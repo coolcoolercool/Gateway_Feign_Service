@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public class UserController {
 
     @GetMapping("/feign/api/v1/users/checkPermission")
-    public  ResultResponse  checkPermission(@RequestParam String url, @RequestParam String httpMethod) {
+    public ResultResponse checkPermission(@RequestParam String url, @RequestParam String httpMethod) {
         // 权限校验逻辑放在这里
         // checkPermission(url, httpMethod)
         // 检验通过，获取用户信息

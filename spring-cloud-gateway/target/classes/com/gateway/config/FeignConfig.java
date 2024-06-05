@@ -14,6 +14,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
  * 该配置类在同步feign调用的时候使用，
  * 使用reactive-feign异步调用则可以删除该配置类
  */
+/*
 @Configuration
 public class FeignConfig {
 
@@ -27,4 +28,4 @@ public class FeignConfig {
                 (new MappingJackson2HttpMessageConverter());
         return () -> httpMessageConverters;
     }
-}
+}*/

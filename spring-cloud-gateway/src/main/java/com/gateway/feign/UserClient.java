@@ -1,7 +1,7 @@
-package com.gateway;
+package com.gateway.feign;
 
 
-import com.gateway.response.ResultResponse;
+/*import com.gateway.response.ResultResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,4 +17,4 @@ public interface UserClient {
 
     @GetMapping(value = "/feign/api/v1/users/getUserInfo")
     ResultResponse getFeignUserInfo();
-}
+}*/
